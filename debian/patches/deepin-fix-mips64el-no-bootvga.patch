@@ -1,0 +1,35 @@
+From fa5664a6f28c18ee336024bf24dd6d1753f71757 Mon Sep 17 00:00:00 2001
+From: zhuchen <zhuchen@loongson.cn>
+Date: Fri, 3 Jun 2016 17:56:00 +0800
+Subject: [PATCH 1/2] fix no bootvga
+
+Change-Id: I22d8cc59792896c5119b7f09b0bbceed5a8f2315
+---
+ hw/xfree86/common/xf86Bus.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/hw/xfree86/common/xf86Bus.c b/hw/xfree86/common/xf86Bus.c
+index bd3e4e3..b065b8b 100644
+--- a/hw/xfree86/common/xf86Bus.c
++++ b/hw/xfree86/common/xf86Bus.c
+@@ -201,6 +201,7 @@ xf86BusProbe(void)
+ {
+ #ifdef XSERVER_PLATFORM_BUS
+     xf86platformProbe();
++    xf86platformPrimary();
+     if (ServerIsNotSeat0() && xf86_num_platform_devices > 0)
+         return;
+ #endif
+@@ -210,9 +211,6 @@ xf86BusProbe(void)
+ #if (defined(__sparc__) || defined(__sparc)) && !defined(__OpenBSD__)
+     xf86SbusProbe();
+ #endif
+-#ifdef XSERVER_PLATFORM_BUS
+-    xf86platformPrimary();
+-#endif
+ }
+ 
+ /*
+-- 
+2.20.1
+
