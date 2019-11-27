@@ -1,0 +1,34 @@
+From 87e511c19dc7ba6f25e076dc64a8b22c7c2e5cf5 Mon Sep 17 00:00:00 2001
+From: arthaszhou <arthaszhou@zhaoxin.com>
+Date: Mon, 30 Sep 2019 15:40:27 +0800
+Subject: [PATCH] using zx for zhaoxin chips chx001/chx002
+
+---
+ hw/xfree86/common/xf86pciBus.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/hw/xfree86/common/xf86pciBus.c b/hw/xfree86/common/xf86pciBus.c
+index 6575c4ec8..b74d1dc8c 100644
+--- a/hw/xfree86/common/xf86pciBus.c
++++ b/hw/xfree86/common/xf86pciBus.c
+@@ -1264,6 +1264,17 @@ xf86VideoPtrToDriverList(struct pci_device *dev, XF86MatchedDrivers *md)
+         else
+             driverList[0] = "xgi";
+         break;
++    case 0x1d17:
++        switch (dev->device_id) {
++        case 0x3a03:
++        case 0x3a04:
++            driverList[0] = "zx";
++            break;
++        default:
++            driverList[0] = "zx";
++            break;
++        }
++        break;
+     default:
+         break;
+     }
+-- 
+2.20.1
+
