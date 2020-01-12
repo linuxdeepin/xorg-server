@@ -1,0 +1,20 @@
+--- xorg-server-1.20.4.1/hw/xfree86/common/xf86pciBus.c	2020-01-11 22:38:14.000000000 +0800
++++ xorg-server-1.20.4.1.new/hw/xfree86/common/xf86pciBus.c	2020-01-11 22:37:45.656000000 +0800
+@@ -1100,6 +1100,17 @@
+     case 0x1142:
+         driverList[0] = "apm";
+         break;
++    case 0x19e5:
++	switch (dev->device_id)
++	{
++		/*huawei hibmc graphics card*/
++		case 0x1711:
++			driverList[0] = "fbdev";
++			break;
++		default:
++			break;
++	}
++        break;
+     case 0xedd8:
+         driverList[0] = "ark";
+         break;
