@@ -8,7 +8,7 @@
 07_use-modesetting-driver-by-default-on-GeForce.diff
 deepin-fix-mips64el-no-bootvga.patch
 0001-using-zx-for-zhaoxin-chips-chx001-chx002.patch
-0002-fix-kunpeng920-hibmc-graphics-default-fbdev.patch
+#0002-fix-kunpeng920-hibmc-graphics-default-fbdev.patch
 deepin_fix_x11perf_shmputxy10_crash.patch
 deepin-glx-add-per_client-vendor-mapping.diff
 deepin-xsync-add-resource-inside-of-sync_create.diff
