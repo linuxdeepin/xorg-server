@@ -40,6 +40,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <sys/timeb.h>
+#include <unistd.h>
+#include <sys/sdt.h>
+
 struct xwl_pixmap {
     struct wl_buffer *buffer;
     void *data;
@@ -189,6 +193,9 @@ shm_format_for_depth(int depth)
     }
 }
 
+struct timeb lastTime;
+int timeCreatePixmap=0;
+int intervalCreatePixmap=5;
 PixmapPtr
 xwl_shm_create_pixmap(ScreenPtr screen,
                       int width, int height, int depth, unsigned int hint)
@@ -241,6 +248,22 @@ xwl_shm_create_pixmap(ScreenPtr screen,
     close(fd);
 
     xwl_pixmap_set_private(pixmap, xwl_pixmap);
+
+    if(timeCreatePixmap==0){
+        ftime(&lastTime);
+    }else if(timeCreatePixmap%intervalCreatePixmap==intervalCreatePixmap-1){
+
+        struct timeb endTime;
+        ftime(&endTime);
+        int diff=(endTime.time - lastTime.time) * 1000 + (endTime.millitm - lastTime.millitm);
+        if(diff<30){
+            sleep(30);
+            DTRACE_PROBE(xwayland_socket, create_fd_sleep);
+        }
+        lastTime=endTime;
+    }
+
+    timeCreatePixmap++;
 
     return pixmap;
 
