@@ -1,3 +1,10 @@
+xorg-server (2:1.20.4.3-1+dde) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * fix CVE-2020-14347
+
+ -- zhouzilong <zhouzilong@uniontech.com>  Tue, 01 Sep 2020 20:48:07 +0800
+
 xorg-server (2:1.20.4-1) unstable; urgency=medium
 
   [ Timo Aaltonen ]
