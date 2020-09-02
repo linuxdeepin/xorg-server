@@ -43,6 +43,7 @@ Build-Depends:
  libxtst-dev (>= 1:0.99.1),
  libxres-dev (>= 1:0.99.1),
  libxfixes-dev (>= 1:3.0.0),
+ systemtap-sdt-dev,
  libxv-dev,
  libxinerama-dev,
  libxshmfence-dev (>= 1.1) [!hurd-i386],
