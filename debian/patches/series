@@ -16,3 +16,4 @@ deepin-glx-use-the-sending-client-for-looking-up-xid.diff
 deepin-glx-add-functions-to-change-clients-vendor-list.diff
 deepin-glx-set-glx_server_exports-version.diff
 deepin-CVE-2020-14347.patch
+jingjia-support-mwv206.patch
